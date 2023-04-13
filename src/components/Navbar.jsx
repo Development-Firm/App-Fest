@@ -31,7 +31,7 @@ const Navbar=( { isExternalLinks } ) => {
         styles.paddingX
       } w-full flex items-center py-5 fixed top-0 z-20 ${
         scrolled ? "bg-primary" : "bg-transparent"
-      }`}
+      } navbar`}
     >
       <div className='w-full flex justify-between items-center max-w-7xl mx-auto'>
         <Link
@@ -42,7 +42,7 @@ const Navbar=( { isExternalLinks } ) => {
             window.scrollTo(0, 0);
           }}
         >
-          <img src={logo} alt='logo' className='object-contain' style={{ width: '14rem' }} />
+          <img src={logo} alt='logo' className='object-contain logo' style={{ width: '14rem' }} />
 
         </Link>
 

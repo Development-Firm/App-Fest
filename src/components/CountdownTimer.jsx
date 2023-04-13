@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 const DateTimeDisplay=( { value, type, isDanger } ) => {
   return (
-    <span className={isDanger? 'bg-red':'bg-[#915EFF] text-white p-3 font-bold text-[30px]'}>
+    <span className={`countDown ${isDanger? 'bg-red': 'bg-[#915EFF] text-white p-3 font-bold text-[30px]'}`}>
       <span>{value} </span>
       <span>{type} </span>
     </span>
@@ -57,11 +57,11 @@ const ShowCounter=( { days, hours, minutes, seconds } ) => {
         className="countdown-link"
       >
         <DateTimeDisplay value={days} type={'Days'} isDanger={days<=3} />
-        <span className='mr-3'></span>
+        <span className='mr-3 countDownSm'></span>
         <DateTimeDisplay value={hours} type={'Hours'} isDanger={false} />
-        <span className='mr-3'></span>
+        <span className='mr-3 countDownSm'></span>
         <DateTimeDisplay value={minutes} type={'Mins'} isDanger={false} />
-        <span className='mr-3'></span>
+        <span className='mr-3 countDownSm'></span>
         <DateTimeDisplay value={seconds} type={'Seconds'} isDanger={false} />
       </a>
     </div>

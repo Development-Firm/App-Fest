@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-
 import { About, Contact, Hero, Navbar, StarsCanvas } from "./components";
 import Applicants from "./components/dashboard/Applicants";
 import CodeBeesTeam from "./components/dashboard/CodeBeesTeam";

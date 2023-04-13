@@ -276,3 +276,95 @@ body {
 .ant-collapse-expand-icon {
   color: white !important
 }
+
+/* media queries */
+@media screen and (max-width: 500px) {
+  .registerBtn{
+    width: 130px;
+    height: 46px;
+    font-size: 16px;
+  }
+  .countDown{
+    font-size: 14px;
+    padding: 4px;
+  }
+  .countDownSm{
+    margin-right: 4px;
+  }
+  .ant-steps{
+    padding-inline: 10px !important;
+    flex-direction: row !important;
+  }
+  .ant-steps-item-title{
+    font-size: 12px !important;
+  }
+  .ant-steps-item-icon{
+    margin-top: 4.5px !important;
+    width: 20px !important;
+    height: 20px !important;
+    line-height: 18px !important;
+    margin-inline-end: 8px !important
+  }
+  .ant-steps-icon{
+    font-size: 10px !important;
+  }
+  .ant-steps-finish-icon{
+    font-size: 12px;
+  }
+  .form1sm, .form2sm{
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  .form3sm, .form4sm{
+    margin-bottom: 0px;
+  }
+  .form1sm .ant-form-vertical{
+    width: 80% !important;
+    margin-inline: auto !important;
+  }
+  .form2sm .ant-form-vertical{
+    width: 80% !important;
+    margin-inline: auto !important;
+  }
+  .form3sm .ant-form-vertical{
+    width: 80% !important;
+    margin-inline: auto !important;
+  }
+  .form1Container, .form2Container, .form3Container, .form4Container{
+    min-height: 0px !important;
+  }
+  .nextFormBtn, .prevFormBtn, .submitFormBtn{
+    font-size: 14px;
+    width: 70px;
+    height: 35px;
+    margin-left: 13px;
+  }
+  .nextFormBtn{
+    margin-left: 3.2rem !important;
+  }
+  .submitFormBtn{
+    margin-left: 4.7rem !important;
+  }
+  .logo{
+    width: 10rem !important;
+  }
+  .navbar{
+    width: 90%;
+  }
+  .form4Text{
+    text-align: center !important;
+  }
+  .form4sm .ant-upload-list{
+    display: flex !important;
+    justify-content: center !important;
+  }
+  .form4sm .ant-upload{
+    width: 70% !important;
+    background-color: transparent !important;
+    color: white !important;
+    padding-left: 36px !important;
+  }
+  .regText{
+    font-size: 30px !important;
+  }
+}
