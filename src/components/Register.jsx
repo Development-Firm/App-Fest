@@ -70,10 +70,23 @@ const Form1=( { form } ) => {
 }
 
 const Form2=( { form } ) => {
-
+  
+  const [validityStatus,setValidityStatus] = useState({status:'success',message:''});
   const onFinish=( values ) => {
     console.log( values );
   };
+  const validateValue = (e)=>{
+   const num= e.target.value;
+   console.log(typeof(num))
+   if(num=='') {
+    setValidityStatus({status:'error',message:'Enter the count of team members'})
+    return
+  }
+   if (num<4 && num >0)
+   setValidityStatus({status:'success',message:''})
+  else
+  setValidityStatus({status:'error',message:'Members can be between 1 and 3'})
+}
   const onReset=() => {
     form.resetFields();
   };
@@ -83,7 +96,6 @@ const Form2=( { form } ) => {
       <Form
         form={form}
         layout='vertical'
-        // name="control-hooks"
         onFinish={onFinish}
         style={{
           maxWidth: 600,
@@ -109,15 +121,18 @@ const Form2=( { form } ) => {
         <Form.Item
           name="team_members_count"
           label="No of team members"
+          validateStatus={validityStatus.status}
+          help={ validityStatus.message }
+          onChange={validateValue}
           rules={[
             {
               required: true,
               message: 'Please enter no of team members!',
-            },
+            }
           ]}
         >
           <Input placeholder="Enter no of team members"
-            size='large' type='number' />
+            size='large' type='number' max={3} min={1}/>
         </Form.Item>
       </Form>
     </div>
@@ -125,8 +140,8 @@ const Form2=( { form } ) => {
   )
 }
 
-const Form3=( { form } ) => {
-  let members=getNumberArray( 3 );
+const Form3=( { form,membersCount } ) => {
+  let members=getNumberArray( membersCount );
 
   const onFinish=( values ) => {
     console.log( values );
@@ -313,7 +328,7 @@ const StepsForm=() => {
   const [ fileList, setFileList ]=useState( [] )
 
   const handleSubmit=() => {
-    console.log( "SUBMIT:", form1.getFieldsValue(), form2.getFieldsValue() )
+    console.log( "SUBMIT:", form1.getFieldsValue(), form2.getFieldsValue(),form3.getFieldsValue(), fileList[0])
   }
   const { token }=theme.useToken();
   const [ current, setCurrent ]=useState( 0 );
@@ -365,7 +380,7 @@ const StepsForm=() => {
       </div>
 
       <div style={{ ...contentStyle, display: current===2? 'block':'none' }} >
-        <Form3 form={form3} />
+        <Form3 form={form3} membersCount={form2.getFieldValue().team_members_count} />
       </div>
 
       <div style={{ ...contentStyle, display: current===3? 'block':'none' }} >
