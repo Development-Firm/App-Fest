@@ -268,3 +268,11 @@ body {
 .ant-pagination-item a {
   color: #050816 !important;
 }
+.ant-collapse-header {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.ant-collapse-expand-icon {
+  color: white !important
+}
