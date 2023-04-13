@@ -36,7 +36,7 @@ const Dashboard=() => {
 
   return (
     <>
-      <div style={{ background: 'rgb(245,245,245)' }}>
+      <div>
         <div className='header_main'>
           <span style={{ fontWeight: 'bold', color: '#050816' }}>Welcome, Admin</span>
           <div>

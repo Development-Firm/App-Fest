@@ -255,3 +255,16 @@ body {
   background-color: #915EFF;
   color: white;
 }
+.ant-pagination-item-link {
+  color: white !important;
+}
+
+.ant-pagination-item,
+.ant-pagination-item-active {
+  border-color: #050816 !important;
+
+}
+
+.ant-pagination-item a {
+  color: #050816 !important;
+}
