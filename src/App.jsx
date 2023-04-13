@@ -1,6 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { About, Contact, Hero, Navbar, StarsCanvas } from "./components";
+import Applicants from "./components/dashboard/Applicants";
+import ApprovedTeams from "./components/dashboard/ApprovedTeams";
+import Dashboard from "./components/dashboard/Dashboard";
 import Register from "./components/Register";
 
 const Home=() => {
@@ -26,6 +29,20 @@ const App=() => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="register" element={<Register />} />
+
+        <Route
+          exact
+          path='/dashboard/'
+          element={
+            // <ProtectedRoute role={[ 'admin' ]}>
+            <Dashboard />
+            // </ProtectedRoute>
+          }
+        >
+          <Route exact path="applicants" element={<Applicants />} />
+          <Route exact path="approved_teams" element={<ApprovedTeams />} />
+        </Route>
+
       </Routes>
 
 

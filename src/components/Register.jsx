@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { styles } from '../styles';
 import { fadeIn, textVariant } from "../utils/motion";
 import ImgCrop from 'antd-img-crop'
+import { StarsCanvas } from './canvas';
 
 
 const { Option }=Select;
@@ -19,8 +20,8 @@ function getNumberArray( count ) {
   return numberArray;
 }
 
-const Form1=() => {
-  const [ form ]=Form.useForm();
+
+const Form1=( { form } ) => {
 
   const onFinish=( values ) => {
     console.log( values );
@@ -68,8 +69,7 @@ const Form1=() => {
   )
 }
 
-const Form2=() => {
-  const [ form ]=Form.useForm();
+const Form2=( { form } ) => {
 
   const onFinish=( values ) => {
     console.log( values );
@@ -125,8 +125,7 @@ const Form2=() => {
   )
 }
 
-const Form3=() => {
-  const [ form ]=Form.useForm();
+const Form3=( { form } ) => {
   let members=getNumberArray( 3 );
 
   const onFinish=( values ) => {
@@ -219,9 +218,6 @@ const Form3=() => {
                       size='large' />
                   </Form.Item>
                 </Col>
-
-
-
               </Row>
             </> )
           } )
@@ -235,9 +231,7 @@ const Form3=() => {
   )
 }
 
-const Form4=() => {
-  const [ fileList, setFileList ]=useState( [] )
-  const [ form ]=Form.useForm();
+const Form4=( { form, fileList, setFileList } ) => {
 
   const onImgChange=( { fileList: newFileList } ) => {
     setFileList( newFileList )
@@ -311,9 +305,35 @@ const steps=[
   },
 ];
 const StepsForm=() => {
+  const [ form1 ]=Form.useForm();
+  const [ form2 ]=Form.useForm();
+  const [ form3 ]=Form.useForm();
+  const [ form4 ]=Form.useForm();
+
+  const [ fileList, setFileList ]=useState( [] )
+
+  const handleSubmit=() => {
+    console.log( "SUBMIT:", form1.getFieldsValue(), form2.getFieldsValue() )
+  }
   const { token }=theme.useToken();
   const [ current, setCurrent ]=useState( 0 );
-  const next=() => {
+  const next=async () => {
+    if ( current===0 ) {
+      let res=await form1.validateFields()
+      console.log( res );
+    }
+    else if ( current===1 ) {
+      let res=await form2.validateFields()
+      console.log( res );
+    }
+    else if ( current===2 ) {
+      let res=await form3.validateFields()
+      console.log( res );
+    }
+    else if ( current===3 ) {
+      let res=await form4.validateFields()
+      console.log( res );
+    }
     setCurrent( current+1 );
   };
   const prev=() => {
@@ -324,17 +344,34 @@ const StepsForm=() => {
     title: item.title,
   } ) );
   const contentStyle={
-
     color: token.colorTextTertiary,
     marginTop: 16,
     minHeight: '400px'
+
   };
   return (
     <div className='pt-[150px] max-w-6xl mx-auto'>
       <h2 className={`${styles.sectionHeadText} text-center`}>Registration.</h2>
       <hr className='border-[#915EFF] mt-0 border-4 mb-20 w-[120px] mx-auto' />
       <Steps current={current} items={items} />
-      <div style={contentStyle}>{steps[ current ].content}</div>
+      {/* <div style={contentStyle}>{steps[ current ].content}</div> */}
+
+      <div style={{ ...contentStyle, display: current===0? 'block':'none' }} >
+        <Form1 form={form1} />
+      </div>
+
+      <div style={{ ...contentStyle, display: current===1? 'block':'none' }} >
+        <Form2 form={form2} />
+      </div>
+
+      <div style={{ ...contentStyle, display: current===2? 'block':'none' }} >
+        <Form3 form={form3} />
+      </div>
+
+      <div style={{ ...contentStyle, display: current===3? 'block':'none' }} >
+        <Form4 form={form4} fileList={fileList} setFileList={setFileList} />
+      </div>
+
       <div
         style={{
           marginTop: 24,
@@ -344,7 +381,7 @@ const StepsForm=() => {
           <button onClick={() => next()} className='w-[80px] font-bold h-[40px] text-[18px] bg-[#915EFF] hover:bg-[#6825f7] text-white'  >Next</button>
         )}
         {current===steps.length-1&&(
-          <button onClick={() => message.success( 'Processing complete!' )} className='w-[90px] font-bold h-[40px] text-[18px] bg-[#915EFF] hover:bg-[#6825f7] text-white'  >Submit</button>
+          <button disabled={!fileList.length} onClick={() => handleSubmit()} className={`w-[90px] font-bold h-[40px] text-[18px] bg-[#915EFF] ${fileList.length? 'hover:bg-[#6825f7] text-white':' opacity-80 bg-gray-50 text-black'} `}  >Submit</button>
         )}
         {current>0&&(
           <button onClick={() => prev()} className='w-[100px] ml-3 font-bold h-[40px] text-[18px] bg-[white] hover:bg-[#d2d0d0] text-black'  >Previous</button>
@@ -362,7 +399,7 @@ const Register=() => {
         <Navbar isExternalLinks />
       </div>
       <StepsForm />
-
+      <StarsCanvas />
     </div>
   )
 }
