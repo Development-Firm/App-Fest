@@ -6,6 +6,7 @@ import CodeBeesTeam from "./components/dashboard/CodeBeesTeam";
 import Dashboard from "./components/dashboard/Dashboard";
 import MobileAppTeam from "./components/dashboard/MobileAppTeam";
 import WebTeam from "./components/dashboard/WebTeam";
+import Login from "./components/Login";
 import Register from "./components/Register";
 
 const Home=() => {
@@ -27,11 +28,10 @@ const Home=() => {
 const App=() => {
   return (
     <BrowserRouter>
-
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route exact path="register" element={<Register />} />
-
         <Route
           exact
           path='/dashboard/'
