@@ -1,14 +1,13 @@
 import { Modal, Table, Tooltip } from 'antd';
-import React, { useState } from 'react'
-import Header from '../generic/Header';
+import React from 'react'
+import Header from '../generic/Header'
 import {
   DeleteOutlined,
   ExclamationCircleOutlined,
   EyeOutlined,
-  EditOutlined,
-  SendOutlined
+  EditOutlined
 } from '@ant-design/icons'
-
+import { useState } from 'react';
 
 const InfoModel=( { modalContent, handleOk, handleCancel, isModalOpen } ) => {
   return (
@@ -68,7 +67,7 @@ const InfoModel=( { modalContent, handleOk, handleCancel, isModalOpen } ) => {
   )
 }
 
-const ApplicantTable=() => {
+const ApprovedTeamsTable=() => {
   const [ isModalOpen, setIsModalOpen ]=useState( false )
 
   const showModal=() => {
@@ -87,25 +86,21 @@ const ApplicantTable=() => {
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Uzair',
-      email: 'uzair@gmail.com',
-      competition: 'Web Hackathon'
+      email: 'uzair@gmail.com'
     },
     {
       key: '2',
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Muzamil',
-      email: 'muzamil@gmail.com',
-      competition: 'App Hackathon'
-
+      email: 'muzamil@gmail.com'
     },
     {
       key: '3',
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Fasih',
-      email: 'fasih@gmail.com',
-      competition: 'Code Bees'
+      email: 'fasih@gmail.com'
     },
 
   ];
@@ -132,11 +127,6 @@ const ApplicantTable=() => {
       key: 'email',
     },
     {
-      title: 'Competition Type',
-      dataIndex: 'competition',
-      key: 'competition',
-    },
-    {
       title: 'Actions',
       key: 'action',
       align: 'center',
@@ -159,30 +149,12 @@ const ApplicantTable=() => {
               <EyeOutlined />
             </span>
           </Tooltip>
-          <Tooltip title='Approve and send email'>
-            <span
-              onClick={() => {
-                // let data = JSON.parse(record._streamingLinks)
-                // data = data.sort((a, b) => a.priority - b.priority)
-                // setModalContent(data)
-                // showModal(true)
-              }}
-              style={{
-                fontSize: '1.3rem',
-                color: '#050816',
-                cursor: 'pointer',
-                marginLeft: '10px'
-
-              }}
-            >
-              <SendOutlined />
-            </span>
-          </Tooltip>
         </>
       )
     }
 
   ];
+
 
   // useEffect(() => {
   //   if ( !isLoading&&data ) {
@@ -210,16 +182,15 @@ const ApplicantTable=() => {
   )
 }
 
-const Applicants=() => {
-
+const MobileAppTeam=() => {
   return (
     <div className='px-[100px]'>
-      <Header heading='Applicants' add_btn={false} />
+      <Header heading='Approved Mobile Application Hackathon Teams' add_btn={false} />
       <div style={{ marginTop: '2rem' }}>
-        <ApplicantTable />
+        <ApprovedTeamsTable />
       </div>
     </div>
   )
 }
 
-export default Applicants
+export default MobileAppTeam

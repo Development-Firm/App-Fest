@@ -30,10 +30,7 @@ const Hero = () => {
           </div>
         </div>
       </div>
-
-
       <ComputersCanvas />
-
       <div className='absolute xs:bottom-10 bottom-32 w-full flex justify-center items-center'>
         {/* <a href='#about'>
           <div className='w-[35px] h-[64px] rounded-3xl border-4 border-secondary flex justify-center items-start p-2'>
@@ -50,7 +47,7 @@ const Hero = () => {
             />
           </div>
         </a> */}
-        <button className='w-[200px] font-bold h-[60px] text-[20px] bg-[#915EFF] hover:bg-[#6825f7] text-white' onClick={() => navigate( '/register' )} >Register now</button>
+        <button className='registerBtn w-[200px] font-bold h-[60px] text-[20px] bg-[#915EFF] hover:bg-[#6825f7] text-white' onClick={() => navigate( '/register' )} >Register now</button>
       </div>
     </section>
   );

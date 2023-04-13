@@ -31,7 +31,7 @@ const Form1=( { form } ) => {
   };
 
   return (
-    <div className='mt-[120px] mb-20 '>
+    <div className='form1sm mt-[120px] mb-20 '>
       <Form
         form={form}
         layout={'vertical'}
@@ -92,7 +92,7 @@ const Form2=( { form } ) => {
   };
 
   return (
-    <div className='mt-[120px] mb-20 '>
+    <div className='form2sm mt-[120px] mb-20 '>
       <Form
         form={form}
         layout='vertical'
@@ -151,7 +151,7 @@ const Form3=( { form,membersCount } ) => {
   };
 
   return (
-    <div className='mt-10 mb-20 '>
+    <div className='form3sm mt-10 mb-20 '>
       <Form
         form={form}
         // name="control-hooks"
@@ -247,7 +247,6 @@ const Form3=( { form,membersCount } ) => {
 }
 
 const Form4=( { form, fileList, setFileList } ) => {
-
   const onImgChange=( { fileList: newFileList } ) => {
     setFileList( newFileList )
   }
@@ -274,12 +273,12 @@ const Form4=( { form, fileList, setFileList } ) => {
   };
 
   return (
-    <div className='mt-10 mb-20'>
-      <p className='text-white font-bold text-[22px]'>Payment Procedure:</p>
+    <div className='form4sm mt-10 mb-20'>
+      <p className='text-white font-bold text-[22px] form4Text'>Payment Procedure:</p>
       <p
-        className='text-secondary text-[14px] leading-[30px] mb-5'
+        className='text-secondary text-[14px] leading-[30px] mb-5 form4Text'
       >
-        <ul>
+        <ul className='form4Text'>
           <li>Pay your dues on Jazzcash account no. 03021947016.</li>
           <li>Upload reciept below.</li>
         </ul>
@@ -366,24 +365,23 @@ const StepsForm=() => {
   };
   return (
     <div className='pt-[150px] max-w-6xl mx-auto'>
-      <h2 className={`${styles.sectionHeadText} text-center`}>Registration.</h2>
+      <h2 className={`${styles.sectionHeadText} text-center regText`}>Registration.</h2>
       <hr className='border-[#915EFF] mt-0 border-4 mb-20 w-[120px] mx-auto' />
       <Steps current={current} items={items} />
       {/* <div style={contentStyle}>{steps[ current ].content}</div> */}
-
-      <div style={{ ...contentStyle, display: current===0? 'block':'none' }} >
+      <div className='form1Container' style={{ ...contentStyle, display: current===0? 'block':'none' }} >
         <Form1 form={form1} />
       </div>
 
-      <div style={{ ...contentStyle, display: current===1? 'block':'none' }} >
+      <div className='form2Container' style={{ ...contentStyle, display: current===1? 'block':'none' }} >
         <Form2 form={form2} />
       </div>
 
-      <div style={{ ...contentStyle, display: current===2? 'block':'none' }} >
+      <div className='form3Container' style={{ ...contentStyle, display: current===2? 'block':'none' }} >
         <Form3 form={form3} membersCount={form2.getFieldValue().team_members_count} />
       </div>
 
-      <div style={{ ...contentStyle, display: current===3? 'block':'none' }} >
+      <div className='form4Container' style={{ ...contentStyle, display: current===3? 'block':'none' }} >
         <Form4 form={form4} fileList={fileList} setFileList={setFileList} />
       </div>
 
@@ -393,19 +391,18 @@ const StepsForm=() => {
         }}
       >
         {current<steps.length-1&&(
-          <button onClick={() => next()} className='w-[80px] font-bold h-[40px] text-[18px] bg-[#915EFF] hover:bg-[#6825f7] text-white'  >Next</button>
+          <button onClick={() => next()} className='nextFormBtn w-[80px] font-bold h-[40px] text-[18px] bg-[#915EFF] hover:bg-[#6825f7] text-white'  >Next</button>
         )}
         {current===steps.length-1&&(
-          <button disabled={!fileList.length} onClick={() => handleSubmit()} className={`w-[90px] font-bold h-[40px] text-[18px] bg-[#915EFF] ${fileList.length? 'hover:bg-[#6825f7] text-white':' opacity-80 bg-gray-50 text-black'} `}  >Submit</button>
+          <button disabled={!fileList.length} onClick={() => handleSubmit()} className={`submitFormBtn w-[90px] font-bold h-[40px] text-[18px] bg-[#915EFF] ${fileList.length? 'hover:bg-[#6825f7] text-white':' opacity-80 bg-gray-50 text-black'} `}  >Submit</button>
         )}
         {current>0&&(
-          <button onClick={() => prev()} className='w-[100px] ml-3 font-bold h-[40px] text-[18px] bg-[white] hover:bg-[#d2d0d0] text-black'  >Previous</button>
+          <button onClick={() => prev()} className='prevFormBtn w-[100px] ml-3 font-bold h-[40px] text-[18px] bg-[white] hover:bg-[#d2d0d0] text-black'  >Previous</button>
         )}
       </div>
     </div>
   );
 };
-
 
 const Register=() => {
   return (
