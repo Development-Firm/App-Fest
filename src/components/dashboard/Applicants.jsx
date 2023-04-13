@@ -1,5 +1,5 @@
-import { Table, Tooltip } from 'antd';
-import React from 'react'
+import { Modal, Table, Tooltip } from 'antd';
+import React, { useState } from 'react'
 import Header from '../generic/Header';
 import {
   DeleteOutlined,
@@ -10,28 +10,102 @@ import {
 } from '@ant-design/icons'
 
 
+const InfoModel=( { modalContent, handleOk, handleCancel, isModalOpen } ) => {
+  return (
+    <Modal
+      title='Team Info'
+      footer={null}
+      open={isModalOpen}
+      onOk={handleOk}
+      onCancel={handleCancel}
+    >
+      {/* <Collapse>
+        {modalContent.map( ( el, i ) => {
+          return (
+            <Panel header={el.name} key={i}>
+              <Descriptions layout='vertical' bordered>
+                <Descriptions.Item
+                  labelStyle={{ fontWeight: 'bold' }}
+                  style={{ textAlign: 'center' }}
+                  label='Url'
+                >
+                  {el.url}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={{ fontWeight: 'bold' }}
+                  style={{ textAlign: 'center' }}
+                  label='Priority'
+                >
+                  {el.priority}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={{ fontWeight: 'bold' }}
+                  style={{ textAlign: 'center' }}
+                  label='Token'
+                >
+                  {el.token}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={{ fontWeight: 'bold' }}
+                  style={{ textAlign: 'center' }}
+                  label='Request Header'
+                >
+                  {el.request_header}
+                </Descriptions.Item>
+                <Descriptions.Item
+                  labelStyle={{ fontWeight: 'bold' }}
+                  style={{ textAlign: 'center' }}
+                  label='Player Header'
+                >
+                  {el.player_header}
+                </Descriptions.Item>
+              </Descriptions>
+            </Panel>
+          )
+        } )}
+      </Collapse> */}
+    </Modal>
+  )
+}
+
 const ApplicantTable=() => {
+  const [ isModalOpen, setIsModalOpen ]=useState( false )
+
+  const showModal=() => {
+    setIsModalOpen( true )
+  }
+  const handleOk=() => {
+    setIsModalOpen( false )
+  }
+  const handleCancel=() => {
+    setIsModalOpen( false )
+  }
+
   const dataSource=[
     {
       key: '1',
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Uzair',
-      email: 'uzair@gmail.com'
+      email: 'uzair@gmail.com',
+      competition: 'Web Hackathon'
     },
     {
       key: '2',
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Muzamil',
-      email: 'muzamil@gmail.com'
+      email: 'muzamil@gmail.com',
+      competition: 'App Hackathon'
+
     },
     {
       key: '3',
       teamName: 'Devfum',
       noOfMembers: 3,
       teamLead: 'Fasih',
-      email: 'fasih@gmail.com'
+      email: 'fasih@gmail.com',
+      competition: 'Code Bees'
     },
 
   ];
@@ -58,6 +132,11 @@ const ApplicantTable=() => {
       key: 'email',
     },
     {
+      title: 'Competition Type',
+      dataIndex: 'competition',
+      key: 'competition',
+    },
+    {
       title: 'Actions',
       key: 'action',
       align: 'center',
@@ -69,7 +148,7 @@ const ApplicantTable=() => {
                 // let data = JSON.parse(record._streamingLinks)
                 // data = data.sort((a, b) => a.priority - b.priority)
                 // setModalContent(data)
-                // showModal(true)
+                showModal( true )
               }}
               style={{
                 fontSize: '1.3rem',
@@ -105,21 +184,6 @@ const ApplicantTable=() => {
 
   ];
 
-  const showDeleteConfirm=record => {
-    confirm( {
-      title: 'Are you sure?',
-      icon: <ExclamationCircleOutlined />,
-      content: 'Are you want to delete?',
-      okText: 'Yes',
-      okType: 'danger',
-      cancelText: 'No',
-      // async onOk () {
-      //   await deleteDeviceId(record.key)
-      // },
-      onCancel() { }
-    } )
-  }
-
   // useEffect(() => {
   //   if ( !isLoading&&data ) {
   //     let _data = data.data.map((device, i) => {
@@ -140,6 +204,7 @@ const ApplicantTable=() => {
         {(
           <Table columns={columns} dataSource={dataSource} size='middle' />
         )}
+        <InfoModel modalContent={[]} isModalOpen={isModalOpen} handleCancel={handleCancel} handleOk={handleOk} />
       </div>
     </>
   )

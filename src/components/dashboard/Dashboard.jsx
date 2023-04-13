@@ -7,6 +7,7 @@ import {
   VideoCameraOutlined,
   SearchOutlined,
   CalendarOutlined,
+  CheckSquareOutlined,
   FileTextOutlined
 } from '@ant-design/icons'
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
@@ -74,9 +75,63 @@ const Dashboard=() => {
                       :''
                       }`}
                   >
-                    <span style={{ color: 'white' }}> <UserOutlined style={{ color: 'white' }} />Approved Teams</span>
+
                   </Link>
                 </li>
+
+                <Collapse ghost expandIconPosition='end'>
+                  <Panel
+                    header={
+                      <>
+                        <span style={{ color: 'white' }}> <CheckSquareOutlined style={{ color: 'white', margin: '5px' }} />Approved Teams</span>
+                      </>
+                    }
+                    key='1'
+                  >
+                    <ul>
+                      <li className='nested_item'>
+                        <Link
+                          to='/dashboard/approved_teams/web'
+                          style={{ textDecoration: 'none', color: 'white' }}
+                          className={`${location.pathname.endsWith( 'web' )||
+                            location.pathname.includes( 'web' )
+                            ? 'nested_side_active'
+                            :''
+                            }`}
+                        >
+                          Web Hackathon
+                        </Link>
+                      </li>
+                      <li className='nested_item'>
+                        <Link
+                          to='/dashboard/approved_teams/mobile'
+                          style={{ textDecoration: 'none', color: 'white' }}
+                          className={`${location.pathname.endsWith( 'mobile' )||
+                            location.pathname.includes( 'mobile' )
+                            ? 'nested_side_active'
+                            :''
+                            }`}
+                        >
+                          Mobile Hackathon
+                        </Link>
+                      </li>
+                      <li className='nested_item'>
+                        <Link
+                          to='/dashboard/approved_teams/code'
+                          style={{ textDecoration: 'none', color: 'white' }}
+                          className={`${location.pathname.endsWith( 'code' )||
+                            location.pathname.includes( 'code' )
+                            ? 'nested_side_active'
+                            :''
+                            }`}
+                        >
+                          Code Bees
+                        </Link>
+                      </li>
+
+                    </ul>
+                  </Panel>
+                </Collapse>
 
 
                 <li className='item text-white'>
